@@ -1,24 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import "./App.css";
+import List from "./Components/List";
 
 function App() {
+  //fetching the data and store it
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    fetch(
+      "https://kea3rdsemester-91fd.restdb.io/rest/" +
+        "subscribers?fetchchildren=true",
+      {
+        method: "get",
+        headers: {
+          "Content-Type": "application/json; charset=utf-8",
+          "x-apikey": "5d887df9fd86cb75861e2626",
+          "cache-control": "no-cache"
+        }
+      }
+    )
+      .then(e => e.json())
+      .then(e => setUsers(e));
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <List users={users} />
     </div>
   );
 }
