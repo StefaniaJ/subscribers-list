@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
-import List from "./Components/List";
+import Sort from "./Components/Sort";
 
 function App() {
   //fetching the data and store it
@@ -25,7 +25,7 @@ function App() {
 
   return (
     <div className="App">
-      <List users={users} />
+      <Sort users={users} />
     </div>
   );
 }

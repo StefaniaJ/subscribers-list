@@ -1,3 +1,8 @@
+:root {
+  --main-color: #004b32;
+  --secondary-color: #DF7B2A;
+}
+
 .App {
   width: 100%;
   overflow: hidden;
@@ -20,6 +25,12 @@
 
 .user-section:nth-child(odd) {
   background-color: rgba(0, 0, 0, 0.315);
+}
+
+.btn-primary,
+.btn-primary:hover {
+  background-color: var(--secondary-color);
+  border: none;
 }
 
 @media all and (min-width:500px) {
