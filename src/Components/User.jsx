@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Delete from "./xwhite.png";
 
 class User extends Component {
   constructor(props) {
@@ -19,6 +20,7 @@ class User extends Component {
     this.changeTel = this.changeTel.bind(this);
     this.changePost = this.changePost.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   editUser() {
@@ -65,6 +67,23 @@ class User extends Component {
           "cache-control": "no-cache"
         },
         body: postData
+      }
+    )
+      .then(res => res.json())
+      .then(this.setState({ edit: false }));
+  }
+
+  handleDelete(e) {
+    fetch(
+      "https://kea3rdsemester-91fd.restdb.io/rest/subscribers/" +
+        e.target.dataset.id,
+      {
+        method: "delete",
+        headers: {
+          "Content-Type": "application/json; charset=utf-8",
+          "x-apikey": "5d887df9fd86cb75861e2626",
+          "cache-control": "no-cache"
+        }
       }
     )
       .then(res => res.json())
@@ -120,6 +139,13 @@ class User extends Component {
         <p className="tel">{this.state.tel}</p>
         <p className="postcode">{this.state.postcode}</p>
         <button onClick={this.editUser}>Edit</button>
+        <img
+          className="delete"
+          onClick={this.handleDelete}
+          src={Delete}
+          alt="Delete"
+          data-id={this.state.id}
+        />
       </article>
     );
   }

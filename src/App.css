@@ -65,7 +65,12 @@
   }
 
   .user-section .tel {
-    flex-basis: 18%;
+    flex-basis: 17%;
+  }
+
+  .user-section .delete {
+    flex-basis: 1%;
+    height: 20px;
   }
 
   .user-section button {
