@@ -1,6 +1,6 @@
 :root {
   --main-color: #004b32;
-  --secondary-color: #DF7B2A;
+  --secondary-color: #df7b2a;
 }
 
 .App {
@@ -33,14 +33,14 @@
   border: none;
 }
 
-@media all and (min-width:500px) {
+@media all and (min-width: 500px) {
   .user-section {
     width: 60%;
   }
 }
 
 /* only screen and */
-@media all and (min-width:700px) {
+@media all and (min-width: 700px) {
   .list {
     width: 100%;
   }
@@ -53,18 +53,37 @@
   }
 
   .user-section .fullname {
-    flex-basis: 25%;
+    flex-basis: 33%;
   }
 
   .user-section .email {
-    flex-basis: 37%;
+    flex-basis: 32%;
   }
 
   .user-section .postcode {
-    flex-basis: 15%;
+    flex-basis: 10%;
   }
 
   .user-section .tel {
-    flex-basis: 23%;
+    flex-basis: 18%;
+  }
+
+  .user-section button {
+    height: 5vh;
+    flex-basis: 7%;
+  }
+
+  .user-input input {
+    background-color: transparent;
+    border: 1px solid white;
+    border-radius: 10px;
+    color: white;
+    padding: 1rem;
+  }
+
+  .user-input input.email,
+  .user-input input.tel,
+  .user-input input.postcode {
+    margin-left: 1%;
   }
 }

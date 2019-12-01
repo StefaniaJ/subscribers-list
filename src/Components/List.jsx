@@ -13,6 +13,7 @@ export default function List(props) {
             email={user.email}
             tel={user.tel}
             postcode={user.postcode}
+            id={user._id}
           />
         );
       })}
