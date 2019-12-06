@@ -129,25 +129,26 @@ class User extends Component {
           <button onClick={this.handleSubmit}>Save</button>
         </article>
       );
+    } else {
+      return (
+        <article className="user-section">
+          <p className="fullname">
+            {this.state.firstname + " " + this.state.lastname}
+          </p>
+          <p className="email">{this.state.email}</p>
+          <p className="tel">{this.state.tel}</p>
+          <p className="postcode">{this.state.postcode}</p>
+          <button onClick={this.editUser}>Edit</button>
+          <img
+            className="delete"
+            onClick={this.handleDelete}
+            src={Delete}
+            alt="Delete"
+            data-id={this.state.id}
+          />
+        </article>
+      );
     }
-    return (
-      <article className="user-section">
-        <p className="fullname">
-          {this.state.firstname + " " + this.state.lastname}
-        </p>
-        <p className="email">{this.state.email}</p>
-        <p className="tel">{this.state.tel}</p>
-        <p className="postcode">{this.state.postcode}</p>
-        <button onClick={this.editUser}>Edit</button>
-        <img
-          className="delete"
-          onClick={this.handleDelete}
-          src={Delete}
-          alt="Delete"
-          data-id={this.state.id}
-        />
-      </article>
-    );
   }
 }
 

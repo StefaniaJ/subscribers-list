@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
-import Sort from "./Components/Sort";
+import SortFilter from "./Components/SortFilter";
 
 function App() {
   //fetching the data and store it
@@ -25,7 +25,7 @@ function App() {
 
   return (
     <div className="App">
-      <Sort users={users} />
+      <SortFilter users={users} />
     </div>
   );
 }
