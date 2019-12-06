@@ -39,6 +39,20 @@
   margin-right: 3vw;
 }
 
+.edit-btn {
+  border: 1px solid var(--secondary-color);
+  color: var(--secondary-color);
+}
+
+.edit-btn:hover,
+.edit-btn:active,
+.submit-btn:hover,
+.submit-btn:active {
+  background-color: var(--secondary-color);
+  border: 1px solid var(--secondary-color);
+  color: white;
+}
+
 @media all and (min-width: 500px) {
   .user-section {
     width: 60%;
@@ -75,13 +89,15 @@
   }
 
   .user-section .delete {
-    flex-basis: 1%;
-    height: 20px;
+    margin-top: 2px;
+    height: 28px;
   }
 
-  .user-section button {
+  .user-section .edit-btn,
+  .user-section .submit-btn {
     height: 5vh;
     flex-basis: 7%;
+    margin-left: 10px;
   }
 
   .user-input input {
@@ -89,7 +105,7 @@
     border: 1px solid white;
     border-radius: 10px;
     color: white;
-    padding: 1rem;
+    padding: 0.5rem;
   }
 
   .user-input input.email,
@@ -97,4 +113,5 @@
   .user-input input.postcode {
     margin-left: 1%;
   }
+
 }

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Delete from "./xwhite.png";
+import Button from "react-bootstrap/Button";
 
 class User extends Component {
   constructor(props) {
@@ -11,7 +12,8 @@ class User extends Component {
       lastname: this.props.lastname,
       email: this.props.email,
       tel: this.props.tel,
-      postcode: this.props.postcode
+      postcode: this.props.postcode,
+      deleted: false
     };
     this.editUser = this.editUser.bind(this);
     this.changeFirstName = this.changeFirstName.bind(this);
@@ -87,11 +89,13 @@ class User extends Component {
       }
     )
       .then(res => res.json())
-      .then(this.setState({ edit: false }));
+      .then(this.setState({ edit: false, deleted: true }));
   }
 
   render() {
     const edit = this.state.edit;
+    const deleted = this.state.deleted;
+
     if (edit) {
       return (
         <article className="user-section user-input">
@@ -126,19 +130,13 @@ class User extends Component {
             value={this.state.postcode}
             onChange={this.changePost}
           />
-          <button onClick={this.handleSubmit}>Save</button>
-        </article>
-      );
-    } else {
-      return (
-        <article className="user-section">
-          <p className="fullname">
-            {this.state.firstname + " " + this.state.lastname}
-          </p>
-          <p className="email">{this.state.email}</p>
-          <p className="tel">{this.state.tel}</p>
-          <p className="postcode">{this.state.postcode}</p>
-          <button onClick={this.editUser}>Edit</button>
+          <Button
+            className="submit-btn"
+            onClick={this.handleSubmit}
+            variant="primary"
+          >
+            Save
+          </Button>
           <img
             className="delete"
             onClick={this.handleDelete}
@@ -148,6 +146,33 @@ class User extends Component {
           />
         </article>
       );
+    } else if (!deleted) {
+      return (
+        <article className="user-section">
+          <p className="fullname">
+            {this.state.firstname + " " + this.state.lastname}
+          </p>
+          <p className="email">{this.state.email}</p>
+          <p className="tel">{this.state.tel}</p>
+          <p className="postcode">{this.state.postcode}</p>
+          <Button
+            className="edit-btn"
+            onClick={this.editUser}
+            variant="outline-primary"
+          >
+            Edit
+          </Button>
+          <img
+            className="delete"
+            onClick={this.handleDelete}
+            src={Delete}
+            alt="Delete"
+            data-id={this.state.id}
+          />
+        </article>
+      );
+    } else {
+      return null;
     }
   }
 }
