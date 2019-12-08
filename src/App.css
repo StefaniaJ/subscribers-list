@@ -5,39 +5,67 @@
 
 .App {
   width: 100%;
-  height: 100vh;
-  overflow: hidden;
+  height: 100%;
+}
+
+.intro {
+  color: white;
+  text-align: center;
+  width: 90%;
+  margin: auto;
+  padding: 1rem;
+}
+
+thead {
+  color: var(--secondary-color);
+  border-top: 1px solid var(--secondary-color);
+  border-bottom: 1px solid var(--secondary-color);
 }
 
 .list {
-  width: 80%;
-  display: block;
-  margin: auto;
-  /* border: 1px solid yellow; */
-}
-
-.user-section {
   color: white;
-  padding: 0.5rem;
-  width: 80%;
-  margin: auto;
-  transition: width 0.8s;
+  text-align: center;
 }
 
 .user-section:nth-child(odd) {
+  background-color: rgba(0, 0, 0, 0.233);
+}
+
+/* .user-section {
+  color: white;
+  padding: 0.5rem;
+  width: 100%;
+  margin: auto;
+  transition: width 0.8s;
+} 
+
+.user-section:nth-child(odd) {
   background-color: rgba(0, 0, 0, 0.315);
+}*/
+
+.buttons {
+  text-align: center;
+  padding: 1rem;
 }
 
 .btn-primary,
-.btn-primary:hover {
+.btn-primary:hover,
+.show>.btn-primary.dropdown-toggle,
+.btn-primary:not(:disabled):not(.disabled).active,
+.btn-primary:not(:disabled):not(.disabled):active,
+.btn-primary.focus,
+.btn-primary:focus {
   background-color: var(--secondary-color);
   border: none;
 }
 
 .buttons .dropdown-btn {
-  display: inline;
+  display: inline-block;
   margin-right: 3vw;
+  margin-bottom: 3vh;
 }
+
+
 
 .edit-btn {
   border: 1px solid var(--secondary-color);
@@ -53,17 +81,25 @@
   color: white;
 }
 
+.delete {
+  cursor: pointer;
+}
+
 @media all and (min-width: 500px) {
-  .user-section {
+  /* .user-section {
     width: 60%;
-  }
+  } */
 }
 
 /* only screen and */
 @media all and (min-width: 700px) {
-  .list {
-    width: 100%;
+  .intro {
+    width: 80%;
   }
+
+  /* .list {
+    width: 100%;
+  } 
 
   .user-section {
     width: 100%;
@@ -98,20 +134,22 @@
     height: 5vh;
     flex-basis: 7%;
     margin-left: 10px;
-  }
+  }*/
 
   .user-input input {
     background-color: transparent;
     border: 1px solid white;
     border-radius: 10px;
     color: white;
-    padding: 0.5rem;
+    padding: 0.3rem;
+    text-align: center;
   }
 
-  .user-input input.email,
+
+  /* .user-input input.email,
   .user-input input.tel,
   .user-input input.postcode {
     margin-left: 1%;
-  }
+  } */
 
 }

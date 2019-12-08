@@ -96,80 +96,176 @@ class User extends Component {
     const edit = this.state.edit;
     const deleted = this.state.deleted;
 
+    // if (edit) {
+    //   return (
+    //     <article className="user-section user-input">
+    //       <div className="fullname">
+    //         <input
+    //           type="text"
+    //           value={this.state.firstname}
+    //           onChange={this.changeFirstName}
+    //         />
+    //         <input
+    //           type="text"
+    //           value={this.state.lastname}
+    //           onChange={this.changeLastName}
+    //         />
+    //       </div>
+
+    //       <input
+    //         className="email"
+    //         type="text"
+    //         value={this.state.email}
+    //         onChange={this.changeEmail}
+    //       />
+    //       <input
+    //         className="tel"
+    //         type="text"
+    //         value={this.state.tel}
+    //         onChange={this.changeTel}
+    //       />
+    //       <input
+    //         className="postcode"
+    //         type="text"
+    //         value={this.state.postcode}
+    //         onChange={this.changePost}
+    //       />
+    //       <Button
+    //         className="submit-btn"
+    //         onClick={this.handleSubmit}
+    //         variant="primary"
+    //       >
+    //         Save
+    //       </Button>
+    //       <img
+    //         className="delete"
+    //         onClick={this.handleDelete}
+    //         src={Delete}
+    //         alt="Delete"
+    //         data-id={this.state.id}
+    //       />
+    //     </article>
+    //   );
+    // } else if (!deleted) {
+    //   return (
+    //     <article className="user-section">
+    //       <p className="fullname">
+    //         {this.state.firstname + " " + this.state.lastname}
+    //       </p>
+    //       <p className="email">{this.state.email}</p>
+    //       <p className="tel">{this.state.tel}</p>
+    //       <p className="postcode">{this.state.postcode}</p>
+    //       <Button
+    //         className="edit-btn"
+    //         onClick={this.editUser}
+    //         variant="outline-primary"
+    //       >
+    //         Edit
+    //       </Button>
+    //       <img
+    //         className="delete"
+    //         onClick={this.handleDelete}
+    //         src={Delete}
+    //         alt="Delete"
+    //         data-id={this.state.id}
+    //       />
+    //     </article>
+    //   );
+    // } else {
+    //   return null;
+    // }
+
     if (edit) {
       return (
-        <article className="user-section user-input">
-          <div className="fullname">
+        <tr className="user-input user-section">
+          <td className="fullname">
             <input
               type="text"
               value={this.state.firstname}
               onChange={this.changeFirstName}
             />
+          </td>
+          <td>
             <input
               type="text"
               value={this.state.lastname}
               onChange={this.changeLastName}
             />
-          </div>
+          </td>
+          <td>
+            <input
+              className="email"
+              type="text"
+              value={this.state.email}
+              onChange={this.changeEmail}
+            />
+          </td>
 
-          <input
-            className="email"
-            type="text"
-            value={this.state.email}
-            onChange={this.changeEmail}
-          />
-          <input
-            className="tel"
-            type="text"
-            value={this.state.tel}
-            onChange={this.changeTel}
-          />
-          <input
-            className="postcode"
-            type="text"
-            value={this.state.postcode}
-            onChange={this.changePost}
-          />
-          <Button
-            className="submit-btn"
-            onClick={this.handleSubmit}
-            variant="primary"
-          >
-            Save
-          </Button>
-          <img
-            className="delete"
-            onClick={this.handleDelete}
-            src={Delete}
-            alt="Delete"
-            data-id={this.state.id}
-          />
-        </article>
+          <td>
+            <input
+              className="tel"
+              type="text"
+              value={this.state.tel}
+              onChange={this.changeTel}
+            />
+          </td>
+
+          <td>
+            <input
+              className="postcode"
+              type="text"
+              value={this.state.postcode}
+              onChange={this.changePost}
+            />
+          </td>
+
+          <td>
+            <Button
+              className="submit-btn"
+              onClick={this.handleSubmit}
+              variant="primary"
+            >
+              Save
+            </Button>
+          </td>
+          <td>
+            <img
+              className="delete"
+              onClick={this.handleDelete}
+              src={Delete}
+              alt="Delete"
+              data-id={this.state.id}
+            />
+          </td>
+        </tr>
       );
     } else if (!deleted) {
       return (
-        <article className="user-section">
-          <p className="fullname">
-            {this.state.firstname + " " + this.state.lastname}
-          </p>
-          <p className="email">{this.state.email}</p>
-          <p className="tel">{this.state.tel}</p>
-          <p className="postcode">{this.state.postcode}</p>
-          <Button
-            className="edit-btn"
-            onClick={this.editUser}
-            variant="outline-primary"
-          >
-            Edit
-          </Button>
-          <img
-            className="delete"
-            onClick={this.handleDelete}
-            src={Delete}
-            alt="Delete"
-            data-id={this.state.id}
-          />
-        </article>
+        <tr className="user-section">
+          <td className="fullname">{this.state.firstname}</td>
+          <td>{this.state.lastname}</td>
+          <td className="email">{this.state.email}</td>
+          <td className="tel">{this.state.tel}</td>
+          <td className="postcode">{this.state.postcode}</td>
+          <td>
+            <Button
+              className="edit-btn"
+              onClick={this.editUser}
+              variant="outline-primary"
+            >
+              Edit
+            </Button>
+          </td>
+          <td>
+            <img
+              className="delete"
+              onClick={this.handleDelete}
+              src={Delete}
+              alt="Delete"
+              data-id={this.state.id}
+            />
+          </td>
+        </tr>
       );
     } else {
       return null;

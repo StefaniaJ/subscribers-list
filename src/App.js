@@ -25,6 +25,16 @@ function App() {
 
   return (
     <div className="App">
+      <div className="intro">
+        <h1>Some stuff</h1>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam porta,
+          erat id sodales iaculis, ante arcu iaculis mauris, et tincidunt dui
+          risus ac dolor. Duis dui ex, gravida ut risus et, semper placerat
+          nisl. In tempus varius massa, a tincidunt eros consequat id.
+        </p>
+      </div>
+
       <SortFilter users={users} />
     </div>
   );
