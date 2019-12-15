@@ -1,81 +1,21 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import Delete from "./xwhite.png";
 import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
+import Form from "react-bootstrap/Form";
+import Col from "react-bootstrap/Col";
+import useForm from "react-hook-form";
 
-class User extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      edit: false,
-      id: this.props.id,
-      firstname: this.props.firstname,
-      lastname: this.props.lastname,
-      email: this.props.email,
-      tel: this.props.tel,
-      postcode: this.props.postcode,
-      deleted: false
-    };
-    this.editUser = this.editUser.bind(this);
-    this.changeFirstName = this.changeFirstName.bind(this);
-    this.changeLastName = this.changeLastName.bind(this);
-    this.changeEmail = this.changeEmail.bind(this);
-    this.changeTel = this.changeTel.bind(this);
-    this.changePost = this.changePost.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleDelete = this.handleDelete.bind(this);
-  }
+export default function User(props) {
+  const [firstname, setFirstname] = useState(props.firstname);
+  const [lastname, setLastname] = useState(props.lastname);
+  const [email, setEmail] = useState(props.email);
+  const [tel, setTel] = useState(props.tel);
+  const [postcode, setPostcode] = useState(props.postcode);
+  const [deleted, setDeleted] = useState(false);
+  const [modalShow, setModal] = useState(false);
 
-  editUser() {
-    this.setState({ edit: true });
-  }
-
-  changeFirstName(e) {
-    this.setState({ firstname: e.target.value });
-  }
-
-  changeLastName(e) {
-    this.setState({ lastname: e.target.value });
-  }
-
-  changeEmail(e) {
-    this.setState({ email: e.target.value });
-  }
-
-  changeTel(e) {
-    this.setState({ tel: e.target.value });
-  }
-
-  changePost(e) {
-    this.setState({ postcode: e.target.value });
-  }
-
-  handleSubmit() {
-    const data = {
-      firstname: this.state.firstname,
-      lastname: this.state.lastname,
-      email: this.state.email,
-      tel: this.state.tel,
-      postcode: this.state.postcode
-    };
-
-    const postData = JSON.stringify(data);
-    fetch(
-      "https://kea3rdsemester-91fd.restdb.io/rest/subscribers/" + this.state.id,
-      {
-        method: "put",
-        headers: {
-          "Content-Type": "application/json; charset=utf-8",
-          "x-apikey": "5d887df9fd86cb75861e2626",
-          "cache-control": "no-cache"
-        },
-        body: postData
-      }
-    )
-      .then(res => res.json())
-      .then(this.setState({ edit: false }));
-  }
-
-  handleDelete(e) {
+  function handleDelete(e) {
     fetch(
       "https://kea3rdsemester-91fd.restdb.io/rest/subscribers/" +
         e.target.dataset.id,
@@ -89,89 +29,50 @@ class User extends Component {
       }
     )
       .then(res => res.json())
-      .then(this.setState({ edit: false, deleted: true }));
+      .then(setDeleted(true));
   }
 
-  render() {
-    const edit = this.state.edit;
-    const deleted = this.state.deleted;
+  const { register, handleSubmit, errors } = useForm();
 
-    if (edit) {
-      return (
-        <tr className="user-input user-section">
-          <td className="fullname">
-            <input
-              type="text"
-              value={this.state.firstname}
-              onChange={this.changeFirstName}
-            />
-          </td>
-          <td>
-            <input
-              type="text"
-              value={this.state.lastname}
-              onChange={this.changeLastName}
-            />
-          </td>
-          <td>
-            <input
-              className="email"
-              type="text"
-              value={this.state.email}
-              onChange={this.changeEmail}
-            />
-          </td>
+  const onSubmit = () => {
+    const data = {
+      firstname: firstname,
+      lastname: lastname,
+      email: email,
+      tel: tel,
+      postcode: postcode
+    };
 
-          <td>
-            <input
-              className="tel"
-              type="text"
-              value={this.state.tel}
-              onChange={this.changeTel}
-            />
-          </td>
+    const postData = JSON.stringify(data);
+    fetch(
+      "https://kea3rdsemester-91fd.restdb.io/rest/subscribers/" + props.id,
+      {
+        method: "put",
+        headers: {
+          "Content-Type": "application/json; charset=utf-8",
+          "x-apikey": "5d887df9fd86cb75861e2626",
+          "cache-control": "no-cache"
+        },
+        body: postData
+      }
+    )
+      .then(res => res.json())
+      .then(setModal(false));
+  };
 
-          <td>
-            <input
-              className="postcode"
-              type="text"
-              value={this.state.postcode}
-              onChange={this.changePost}
-            />
-          </td>
-
-          <td>
-            <Button
-              className="submit-btn"
-              onClick={this.handleSubmit}
-              variant="primary"
-            >
-              Save
-            </Button>
-          </td>
-          <td>
-            <img
-              className="delete"
-              onClick={this.handleDelete}
-              src={Delete}
-              alt="Delete"
-              data-id={this.state.id}
-            />
-          </td>
-        </tr>
-      );
-    } else if (!deleted) {
-      return (
+  if (!deleted) {
+    return (
+      <>
         <tr className="user-section">
-          <td className="fullname">{this.state.firstname}</td>
-          <td>{this.state.lastname}</td>
-          <td className="email">{this.state.email}</td>
-          <td className="tel">{this.state.tel}</td>
-          <td className="postcode">{this.state.postcode}</td>
+          <td className="fullname">{firstname}</td>
+          <td>{lastname}</td>
+          <td className="email">{email}</td>
+          <td className="tel">{tel}</td>
+          <td className="postcode">{postcode}</td>
           <td>
             <Button
               className="edit-btn"
-              onClick={this.editUser}
+              onClick={() => setModal(true)}
               variant="outline-primary"
             >
               Edit
@@ -180,18 +81,126 @@ class User extends Component {
           <td>
             <img
               className="delete"
-              onClick={this.handleDelete}
+              onClick={handleDelete}
               src={Delete}
               alt="Delete"
-              data-id={this.state.id}
+              data-id={props.id}
             />
           </td>
         </tr>
-      );
-    } else {
-      return null;
-    }
+
+        <Modal
+          show={modalShow}
+          onHide={() => setModal(false)}
+          {...props}
+          size="lg"
+          aria-labelledby="contained-modal-title-vcenter"
+          centered
+        >
+          <Modal.Header closeButton>
+            <Modal.Title id="contained-modal-title-vcenter">
+              Edit details
+            </Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <Form onSubmit={handleSubmit(onSubmit)}>
+              <Form.Row>
+                <Col>
+                  <Form.Label>First name</Form.Label>
+                  <Form.Control
+                    name="firstname"
+                    defaultValue={firstname}
+                    onChange={e => setFirstname(e.target.value)}
+                    ref={register({
+                      required: true
+                    })}
+                  />
+                  {errors.firstname && (
+                    <p className="error-msg">This is required</p>
+                  )}
+                </Col>
+                <Col>
+                  <Form.Label>Last name</Form.Label>
+                  <Form.Control
+                    name="lastname"
+                    defaultValue={lastname}
+                    onChange={e => setLastname(e.target.value)}
+                    ref={register({
+                      required: true
+                    })}
+                  />
+                  {errors.lastname && (
+                    <p className="error-msg">This is required</p>
+                  )}
+                </Col>
+              </Form.Row>
+              <Form.Label>Email</Form.Label>
+              <Form.Control
+                name="email"
+                defaultValue={email}
+                onChange={e => setEmail(e.target.value)}
+                ref={register({
+                  required: "This is required",
+                  pattern: {
+                    value: /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
+                    message: "Invalid email address"
+                  }
+                })}
+              />
+              {errors.email && (
+                <p className="error-msg">{errors.email.message}</p>
+              )}
+              <Form.Label>Tel.</Form.Label>
+              <Form.Control
+                name="tel"
+                defaultValue={tel}
+                onChange={e => setTel(e.target.value)}
+                ref={register({
+                  required: true
+                })}
+              />
+              {errors.tel && <p className="error-msg">This is required</p>}
+              <Form.Label>Postal code</Form.Label>
+              <Form.Control
+                name="postcode"
+                defaultValue={postcode}
+                onChange={e => setPostcode(e.target.value)}
+                ref={register({
+                  required: "This is required",
+                  pattern: {
+                    value: /^\d{4}$/,
+                    message: "It must contain 4 numbers"
+                  },
+                  minLength: {
+                    value: 4,
+                    message: "It must contain 4 numbers"
+                  },
+                  maxLength: {
+                    value: 4,
+                    message: "It must have no more than 4 numbers"
+                  }
+                })}
+              />
+              {errors.postcode && (
+                <p className="error-msg">{errors.postcode.message}</p>
+              )}
+              <Modal.Footer>
+                <img
+                  className="delete"
+                  onClick={handleDelete}
+                  src={Delete}
+                  alt="Delete"
+                />
+                <Button variant="primary" type="submit">
+                  Save
+                </Button>
+              </Modal.Footer>
+            </Form>
+          </Modal.Body>
+        </Modal>
+      </>
+    );
+  } else {
+    return null;
   }
 }
-
-export default User;

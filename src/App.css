@@ -31,17 +31,13 @@ thead {
   background-color: rgba(0, 0, 0, 0.233);
 }
 
-/* .user-section {
-  color: white;
-  padding: 0.5rem;
-  width: 100%;
-  margin: auto;
-  transition: width 0.8s;
-} 
+.form-control {
+  color: black;
+}
 
-.user-section:nth-child(odd) {
-  background-color: rgba(0, 0, 0, 0.315);
-}*/
+.error-msg {
+  color: red;
+}
 
 .buttons {
   text-align: center;
