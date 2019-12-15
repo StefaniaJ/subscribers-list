@@ -26,12 +26,11 @@ function App() {
   return (
     <div className="App">
       <div className="intro">
-        <h1>Some stuff</h1>
+        <h1>Lucky 7 Users</h1>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam porta,
-          erat id sodales iaculis, ante arcu iaculis mauris, et tincidunt dui
-          risus ac dolor. Duis dui ex, gravida ut risus et, semper placerat
-          nisl. In tempus varius massa, a tincidunt eros consequat id.
+          This list shows all accounts created on Lucky 7. You have the
+          possibility to sort the list or filter it by postal code. It's
+          possible to delete a user or edit the information showed.
         </p>
       </div>
 
