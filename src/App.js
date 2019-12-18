@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import SortFilter from "./Components/SortFilter";
+import Logo from "./logo.png";
 
 function App() {
   //fetching the data and store it
@@ -26,10 +27,11 @@ function App() {
   return (
     <div className="App">
       <div className="intro">
-        <h1>Lucky 7 Users</h1>
+        <img className="header" src={Logo} alt="Lucky 7" />
+
         <p>
           This list shows all accounts created on Lucky 7. You have the
-          possibility to sort the list or filter it by postal code. It's
+          possibility to sort the list or filter it by postal code. It's also
           possible to delete a user or edit the information showed.
         </p>
       </div>

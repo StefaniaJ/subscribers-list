@@ -8,6 +8,12 @@
   height: 100%;
 }
 
+.header {
+  width: 200px;
+  margin: auto;
+  margin-bottom: 20px;
+}
+
 .intro {
   color: white;
   text-align: center;
@@ -18,8 +24,8 @@
 
 thead {
   color: var(--secondary-color);
-  border-top: 1px solid var(--secondary-color);
   border-bottom: 1px solid var(--secondary-color);
+  font-size: 1.1rem;
 }
 
 .list {
@@ -81,71 +87,10 @@ thead {
   cursor: pointer;
 }
 
-@media all and (min-width: 500px) {
-  /* .user-section {
-    width: 60%;
-  } */
-}
-
-/* only screen and */
 @media all and (min-width: 700px) {
   .intro {
     width: 80%;
   }
 
-  /* .list {
-    width: 100%;
-  } 
-
-  .user-section {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-  }
-
-  .user-section .fullname {
-    flex-basis: 33%;
-  }
-
-  .user-section .email {
-    flex-basis: 32%;
-  }
-
-  .user-section .postcode {
-    flex-basis: 10%;
-  }
-
-  .user-section .tel {
-    flex-basis: 17%;
-  }
-
-  .user-section .delete {
-    margin-top: 2px;
-    height: 28px;
-  }
-
-  .user-section .edit-btn,
-  .user-section .submit-btn {
-    height: 5vh;
-    flex-basis: 7%;
-    margin-left: 10px;
-  }*/
-
-  .user-input input {
-    background-color: transparent;
-    border: 1px solid white;
-    border-radius: 10px;
-    color: white;
-    padding: 0.3rem;
-    text-align: center;
-  }
-
-
-  /* .user-input input.email,
-  .user-input input.tel,
-  .user-input input.postcode {
-    margin-left: 1%;
-  } */
 
 }
